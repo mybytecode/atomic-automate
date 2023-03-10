@@ -8,7 +8,7 @@ export interface AtmoicParticipant {
 }
 
 export interface Person {
-  country_of_citizenship?: string[]
+  country_of_citizenship?: any
   address?: Address
   employment?: Employment
   first_name?: string
