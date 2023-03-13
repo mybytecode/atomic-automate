@@ -75,7 +75,7 @@ export function parse(details: KYB): AtomicCorporate {
 
 
   return {
-    custom_id: details.data.id,
+    custom_id: '',
     financial_profile: {
       source_of_funds: "investment_proceeds"
     },
