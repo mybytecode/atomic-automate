@@ -114,11 +114,10 @@ export function parseParticipant(details: KYB): AtmoicParticipant {
         case "last_name":
           lName = detail.value
           break
+        case "owner_profile":
+          role = detail.value
         case "date_of_birth":
           dob = detail.value
-          break
-        case "industry_type":
-          industry = detail.value
           break
         case "email":
           email = detail.value
@@ -167,6 +166,17 @@ export function parseParticipant(details: KYB): AtmoicParticipant {
 
       }
     }
+    if (detail.parent == "company_details") {
+      switch (detail.key) {
+        case "legal_business_name":
+          employer = detail.value
+          break;
+        case "industry_type":
+          industry = detail.value
+          break
+      }
+    }
+
   })
 
   var participantAddress: Address = {
