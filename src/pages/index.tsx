@@ -21,11 +21,24 @@ export default function Home() {
 
     const pDom = document.getElementById("participant")
     const kDom = document.getElementById("corporate")
+    const ids = document.getElementById("ids")
     if (document || kDom != null) {
       kDom!.innerHTML = JSON.stringify(kyb, null, 2)
     }
     if (document || pDom != null) {
       pDom!.innerHTML = JSON.stringify(participant, null, 2)
+    }
+
+    if (document || ids != null) {
+      ids!.innerHTML = JSON.stringify({
+        "government_ids": [
+          {
+            "country": null,
+            "type": null,
+            "number": null
+          }
+        ]
+      }, null, 2)
     }
 
   }
@@ -68,7 +81,12 @@ export default function Home() {
                 <pre id='participant'>
                 </pre>
               </Card>
+              <Card title="GovIds" bordered={false} >
+                <pre id='ids'>
+                </pre>
+              </Card>
             </Col>
+
           </Row>
         </Col>
       </main>
