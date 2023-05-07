@@ -81,7 +81,7 @@ export default function Home() {
                 <pre id='participant'>
                 </pre>
               </Card>
-              <Card title="GovIds" bordered={false} >
+              <Card title="Gov Ids" bordered={false} >
                 <pre id='ids'>
                 </pre>
               </Card>
