@@ -68,7 +68,6 @@ export function AtomicOnboarding() {
 
   }
 
-
   return <Col span={24} style={{ padding: 24, minHeight: 360, background: colorBgContainer }}>
     <Row>
       <Col span={12}>
