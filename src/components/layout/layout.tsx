@@ -70,7 +70,9 @@ export function DashboardLayout({ children }: any) {
         collapsedWidth="0"
         collapsible={true}
       >
-        <div>ZAMP</div>
+        <div style={{ color: '#fff', padding: '10px', fontWeight: 'bold', textAlign: 'center' }}>
+          <img src='/zamp.png' alt='logo' />
+        </div>
         <Menu theme="dark" onSelect={(e) => handleSidebarChange(e)} defaultSelectedKeys={['1']} mode="inline" items={items} />
       </Sider>
       <Layout >
