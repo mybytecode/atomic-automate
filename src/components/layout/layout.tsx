@@ -25,9 +25,9 @@ const items: MenuItem[] = [
     getItem('Package', 5),
     getItem('Service', 6),
     getItem('Schema', 7),
-    getItem('Controller', 7),
-    getItem('Repository', 7),
-    getItem('Routes', 7),
+    getItem('Controller', 8),
+    getItem('Repository', 9),
+    getItem('Routes', 10),
   ]),
   getItem('Tools', '/tools'),
 ];
