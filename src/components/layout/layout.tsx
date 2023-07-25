@@ -5,7 +5,8 @@ import {
   DatabaseOutlined,
   CodepenOutlined
 } from '@ant-design/icons';
-import React from 'react';
+import React, { use } from 'react';
+import { Router, useRouter } from 'next/router';
 
 const { Sider, Content, Header } = Layout;
 
@@ -13,12 +14,12 @@ type MenuItem = Required<MenuProps>['items'][number];
 
 const items: MenuItem[] = [
   getItem('Onboarding', 'onboarding', <NodeIndexOutlined />, [
-    getItem('Corporate', 1),
+    getItem('Corporate', '/'),
     getItem('Individual', 2),
   ]),
   getItem('Sql', 'Sql', <DatabaseOutlined />, [
     getItem('BigQuery', 3),
-    getItem('Individual', 4),
+    getItem('MEA', '/mea'),
   ]),
   getItem('Code Snippets', 'code', <CodepenOutlined />, [
     getItem('Package', 5),
@@ -46,9 +47,14 @@ function getItem(
 
 export function DashboardLayout({ children }: any) {
 
+  const router = useRouter();
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
+  const handleSidebarChange = (e: any) => {
+    router.push(e.key);
+  }
 
   return <>
     <Head>
@@ -61,11 +67,10 @@ export function DashboardLayout({ children }: any) {
       <Sider
         breakpoint="lg"
         collapsedWidth="0"
-
         collapsible={true}
       >
         <div>ZAMP</div>
-        <Menu theme="dark" onSelect={(e) => console.log(e)} defaultSelectedKeys={['1']} mode="inline" items={items} />
+        <Menu theme="dark" onSelect={(e) => handleSidebarChange(e)} defaultSelectedKeys={['1']} mode="inline" items={items} />
       </Sider>
       <Layout >
         <Header style={{ padding: 0, background: colorBgContainer, position: 'sticky' }} />
