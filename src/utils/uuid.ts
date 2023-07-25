@@ -19,3 +19,9 @@ export function getUuid(): string {
   const uuid: string = `${randomId}${delimiter}${month.toString().padStart(2, '0')}${delimiter}${day.toString().padStart(2, '0')}`;
   return uuid;
 }
+
+export function getMerchantCodeFromId(id: string): string {
+  const aggregateSplits: string[] = id.split("_");
+  return aggregateSplits[0];
+}
+
