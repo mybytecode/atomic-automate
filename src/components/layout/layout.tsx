@@ -5,23 +5,23 @@ import {
   DatabaseOutlined,
   CodepenOutlined
 } from '@ant-design/icons';
-import React, { use } from 'react';
-import { Router, useRouter } from 'next/router';
+import React from 'react';
+import { useRouter } from 'next/router';
 
 const { Sider, Content, Header } = Layout;
 
 type MenuItem = Required<MenuProps>['items'][number];
 
 const items: MenuItem[] = [
-  getItem('Onboarding', 'onboarding', <NodeIndexOutlined />, [
+  getItem('Onboarding', 'onboarding', null, [
     getItem('Corporate', '/'),
     getItem('Individual', 2),
   ]),
-  getItem('Sql', 'Sql', <DatabaseOutlined />, [
+  getItem('Sql', 'Sql', null, [
     getItem('BigQuery', 3),
     getItem('MEA', '/mea'),
   ]),
-  getItem('Code Snippets', 'code', <CodepenOutlined />, [
+  getItem('Code Snippets', 'code', null, [
     getItem('Package', 5),
     getItem('Service', 6),
     getItem('Schema', 7),
@@ -29,6 +29,7 @@ const items: MenuItem[] = [
     getItem('Repository', 7),
     getItem('Routes', 7),
   ]),
+  getItem('Tools', '/tools'),
 ];
 
 function getItem(
