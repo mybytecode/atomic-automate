@@ -1,12 +1,28 @@
+import JsonFormatter from 'react-json-formatter';
 import { parse, parseParticipant } from '../utils/parse'
-import { Button, Col, Input, Row, Form, Card, Menu, Layout, theme, MenuProps } from 'antd'
+import { Button, Col, Input, Row, Form, Card, theme, Collapse } from 'antd'
+import React, { useState } from 'react';
+import { AtomicCorporate } from '../types/atomic_corporate';
+import { AtmoicParticipant } from '../types/atmoic_person';
 const { TextArea } = Input;
+const { Panel } = Collapse;
+
 
 export function AtomicOnboarding() {
 
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
+  const [corporate, setCorporate] = useState<AtomicCorporate>()
+  const [participant, setParticipant] = useState<AtmoicParticipant>()
+  const [governmentIds, setGovernmentIds] = useState<any>()
+
+  const jsonStyle = {
+    propertyStyle: { color: 'red' },
+    stringStyle: { color: 'green' },
+    numberStyle: { color: 'darkorange' }
+  }
 
   const parseDetails = (values: any) => {
     if (values.details == undefined) {
@@ -18,6 +34,19 @@ export function AtomicOnboarding() {
     const pDom = document.getElementById("participant")
     const kDom = document.getElementById("corporate")
     const ids = document.getElementById("ids")
+
+    setCorporate(kyb)
+    setParticipant(participant)
+    setGovernmentIds({
+      "government_ids": [
+        {
+          "country": null,
+          "type": null,
+          "number": null
+        }
+      ]
+    })
+
     if (document || kDom != null) {
       kDom!.innerHTML = JSON.stringify(kyb, null, 2)
     }
@@ -60,20 +89,18 @@ export function AtomicOnboarding() {
 
       </Col>
       <Col span={12} style={{ padding: '20px', overflow: 'scroll', height: '100vh' }}>
-        <Card title="Corporate" bordered={false} style={{ margin: '10px' }}>
-          <pre id='corporate'>
-          </pre>
-        </Card>
-        <Card title="Participant" bordered={false} style={{ margin: '10px' }}>
-          <pre id='participant'>
-          </pre>
-        </Card>
-        <Card title="Gov Ids" bordered={false} style={{ margin: '10px' }}>
-          <pre id='ids'>
-          </pre>
-        </Card>
+        <Collapse defaultActiveKey={['1']}>
+          <Panel header="Corporate" key="1">
+            <p>{corporate ? <JsonFormatter json={JSON.stringify(corporate)} tabWith={4} jsonStyle={jsonStyle} /> : <></>}</p>
+          </Panel>
+          <Panel header="Participant" key="2">
+            <p>{participant ? <JsonFormatter json={JSON.stringify(participant)} tabWith={4} jsonStyle={jsonStyle} /> : <></>}</p>
+          </Panel>
+          <Panel header="Government ID's" key="3">
+            <p>{governmentIds ? <JsonFormatter json={JSON.stringify(governmentIds)} tabWith={4} jsonStyle={jsonStyle} /> : <></>}</p>
+          </Panel>
+        </Collapse>
       </Col>
-
-    </Row>
-  </Col>
+    </Row >
+  </Col >
 }

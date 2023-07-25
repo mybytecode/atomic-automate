@@ -1,29 +1,28 @@
 import Head from 'next/head'
-import { Input, Menu, Layout, theme, MenuProps } from 'antd'
+import { Menu, Layout, theme, MenuProps } from 'antd'
 import {
-  UserOutlined, DesktopOutlined,
-  FileOutlined,
-  PieChartOutlined,
-  TeamOutlined,
+  UserOutlined,
+  NodeIndexOutlined,
+  DatabaseOutlined,
+  CodepenOutlined
 } from '@ant-design/icons';
 import React from 'react';
 import { AtomicOnboarding } from '../components/atomic_onboarding';
-import { get } from 'http';
 
 
 const { Sider, Content, Header } = Layout;
 type MenuItem = Required<MenuProps>['items'][number];
 
 const items: MenuItem[] = [
-  getItem('Onboarding', 'onboarding', <UserOutlined />, [
+  getItem('Onboarding', 'onboarding', <NodeIndexOutlined />, [
     getItem('Corporate', 1),
     getItem('Individual', 2),
   ]),
-  getItem('Sql', 'Sql', <UserOutlined />, [
+  getItem('Sql', 'Sql', <DatabaseOutlined />, [
     getItem('BigQuery', 3),
     getItem('Individual', 4),
   ]),
-  getItem('Code Snippets', 'code', <UserOutlined />, [
+  getItem('Code Snippets', 'code', <CodepenOutlined />, [
     getItem('Package', 5),
     getItem('Service', 6),
     getItem('Schema', 7),
