@@ -14,8 +14,8 @@ type MenuItem = Required<MenuProps>['items'][number];
 
 const items: MenuItem[] = [
   getItem('Onboarding', 'onboarding', null, [
-    getItem('Corporate', '/'),
-    getItem('Individual', 2),
+    getItem('Corporate (Atomic)', '/'),
+    getItem('Individual (Atomic)', 2),
   ]),
   getItem('Sql', 'Sql', null, [
     getItem('BigQuery', 3),
