@@ -12,4 +12,10 @@ export interface MeaObject {
   accountName: string;
   accountCurrency: string;
   balanceId: string;
+  refUUIDMappingId?: string;
+  uuid?: string;
+  uuidType?: string;
+  refUUID?: string;
+  refUUIDType?: string;
+  depositAccountId?: string;
 }
