@@ -21,6 +21,7 @@ const items: MenuItem[] = [
     getItem('BigQuery', 3),
     getItem('MEA', '/mea'),
     getItem('Pricing', '/pricing'),
+    getItem('Billing Transactions', '/billing-transactions'),
   ]),
   getItem('Code Snippets', 'code', null, [
     getItem('Package', 5),

@@ -33,3 +33,6 @@ export const BILLING_ACCOUNT_QUERY_TEMPLATE = `INSERT INTO BillingAccount (Id, N
 
 export const BILLING_ACCOUNT_BILLING_CAPABILITY_MAPPING_ID_MAPPING_QUERY_TEMPLATE = `INSERT INTO BillingAccountBillingCapabilityMapping(Id, BillingAccountId, BillingCapabilityId, CreatedAt, UpdatedAt)
 VALUES("{accountMappingId}", "{billingAccountId}", "{billingCapabilityMappingId}", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`
+
+export const BILLING_TRANSACTIONS_QUERY_TEMPLATE = `INSERT INTO BillingTransactions (Id, Amount, DueAmount, BillingAccountId, ChargeAccountId, CurrencyName, DiscountId, DiscountAmount, TaxAmount, PaidBy, PaidByType, ReferenceId, ReferenceType, InvoiceId, TransactionType, TransactionSubType, Status,  InitiatedAt, CompletedAt, CreatedAt, UpdatedAt, CurrencyCode, Remark) 
+VALUES('{billingTransactionId}', {billingAmount}, {dueAmount}, '{billingAccountId}', '', 'USD', '', {discountAmount}, 0, '', '', '', '', '', 'treasury', 'charge_on_aum', 'pending',  '0001-01-03T13:22:58Z', '0001-01-03T13:22:58Z', '{createdAt}', CURRENT_TIMESTAMP, 'USD', '{remark}');`
