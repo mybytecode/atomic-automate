@@ -41,7 +41,7 @@ export default function BillingTransactions() {
     transactions.forEach((transaction: any, index: number) => {
       obj.billingTransactionId = getUuid()
       const dataToRemark = transaction.date.subtract(1, 'month')
-      obj.remark = `Management fee - ${dataToRemark.format('MMMM YYYY')}}`
+      obj.remark = `Management fee - ${dataToRemark.format('MMMM YYYY')}`
       obj.billingAmount = parseFloat(transaction.amount)
       obj.createdAt = transaction.date.format()
       obj.discountAmount = parseFloat(transaction.discountedAmount)
