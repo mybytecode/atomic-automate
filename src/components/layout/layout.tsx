@@ -20,6 +20,7 @@ const items: MenuItem[] = [
   getItem('Sql', 'Sql', null, [
     getItem('BigQuery', 3),
     getItem('MEA', '/mea'),
+    getItem('Pricing', '/pricing'),
   ]),
   getItem('Code Snippets', 'code', null, [
     getItem('Package', 5),

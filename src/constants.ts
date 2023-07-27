@@ -2,6 +2,8 @@ export const PRODUCT_CODE_PAYMETNS: string = "Payments";
 export const PRODUCT_CODE_TREASURY: string = "Treasury";
 export const PRODUCT_CODE_PAYOUTS: string = "Payouts";
 
+export const PRICING_TIERS = ['KcavHyTiGrDAaTjFPoL4BV_11_10_01', 'KcavHyTiGrDAaTjFPoL4BV_11_10_02', 'KcavHyTiGrDAaTjFPoL4BV_11_10_03', 'KcavHyTiGrDAaTjFPoL4BV_11_10_04']
+
 export const VAULTS_QUERY_TEMPLATE = `INSERT INTO Vaults (Id, MerchantId, EntityId, Type, Name, Status, IsDeleted, DeletedAt, CreatedAt, UpdatedAt, IsAccountNumbersRequired)
 VALUES('{vaultId}', '{merchantId}', '{entityId}', '{vaultType}', '{vaultName}', 'active', false, '0001-01-03T13:22:58Z', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, {isAccountNumberRequired});`;
 
@@ -19,3 +21,15 @@ VALUES('{merchantIdConfigId}', '{merchantId}', '{refUUIDType}', '{refUUID}', CUR
 
 export const DEPOSIT_ACCOUNT_QUERY_TEMPLATE = `INSERT INTO DepositAccounts (Id, ParentId, PartnerCode, PartnerId, Type, CurrencyCode, BankNameId, BankDisplayName, RoutingCodeType1, RoutingCodeValue1, RoutingCodeType2, RoutingCodeValue2, BankAddress, BankAccountType, Status, CreatedAt, UpdatedAt,  AccountId, BeneficiaryAddress, MetaData) 
 VALUES('{depositAccountId}', '{merchantId}', 'BNY', '', 'FIAT', 'USD', '', 'Bank of New York Mellon', 'ABA (Wire)', '', 'MEMORANDUM', '', '240 Greenwich Street, New York, NY 10007', 'LOCAL', 'ACTIVE', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP,  '', 'One Pershing Plaza, 6th Floor, Jersey City, New Jersey 07399', '');`
+
+export const BILLING_CAPABILITY_ENTITY_MAPPING_QUERY_TEMPLATE = `INSERT INTO BillingCapabilityEntityMapping (Id, BillingCapabilityId, EntityId, CreatedAt, UpdatedAt)
+VALUES('{billingCapabilityMappingId}', '{billingCapabilityId}', '{entityId}', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);`
+
+export const PRICING_TIERS_MAPPING_QUERY_TEMPLATE = `INSERT INTO PricingTierCapabilityMapping (Id, PricingTierId, CreatedAt, UpdatedAt, BillingCapabilityMappingId)
+VALUES('{pricingTierMappingId}', '{pricingTierId}', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '{billingCapabilityMappingId}');`
+
+export const BILLING_ACCOUNT_QUERY_TEMPLATE = `INSERT INTO BillingAccount (Id, Name, MerchantId, CreatedAt, UpdatedAt, ParentId) VALUES
+	('{billingAccountId}', 'Treasury Billing', '{merchantId}', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, "");`
+
+export const BILLING_ACCOUNT_BILLING_CAPABILITY_MAPPING_ID_MAPPING_QUERY_TEMPLATE = `INSERT INTO BillingAccountBillingCapabilityMapping(Id, BillingAccountId, BillingCapabilityId, CreatedAt, UpdatedAt)
+VALUES("{accountMappingId}", "{billingAccountId}", "{billingCapabilityMappingId}", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`
