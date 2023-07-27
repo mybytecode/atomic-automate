@@ -43,7 +43,7 @@ export default function BillingTransactions() {
       const dataToRemark = transaction.date.subtract(1, 'month')
       obj.remark = `Management fee - ${dataToRemark.format('MMMM YYYY')}`
       obj.billingAmount = parseFloat(transaction.amount)
-      obj.createdAt = transaction.date.format('MM-DD-YYYY')
+      obj.createdAt = transaction.date.format()
       obj.discountAmount = parseFloat(transaction.discountedAmount)
       dueAmount += parseFloat(transaction.discountedAmount)
       obj.dueAmount = dueAmount
