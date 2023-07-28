@@ -1,4 +1,4 @@
-import { Button, Col, Collapse, DatePicker, Form, Input, Row, Space, theme } from "antd";
+import { Button, Checkbox, Col, Collapse, DatePicker, Form, Input, Row, Space, theme } from "antd";
 import { DashboardLayout } from "../components/layout/layout";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import { BillingTransaction } from "../types/billing_transactions";
@@ -28,6 +28,7 @@ export default function BillingTransactions() {
 
   const handleSubmit = () => {
     const values = form.getFieldsValue();
+    console.log(values)
     const transactions = values.transaction.sort((t1: any, t2: any) => {
       return t1.date.isBefore(t2)
     })
@@ -48,7 +49,8 @@ export default function BillingTransactions() {
       obj.discountAmount = parseFloat(transaction.discountedAmount)
       dueAmount += parseFloat(transaction.discountedAmount)
       obj.dueAmount = dueAmount
-
+      obj.discountId = transaction.isFree ? 'kTApPKcSApNhKrYbAGkmT6_07_26' : ''
+      console.log(transaction)
       const query = replacePlaceholder(BILLING_TRANSACTIONS_QUERY_TEMPLATE, obj as any)
       q += '\n\n' + query
 
@@ -83,24 +85,30 @@ export default function BillingTransactions() {
                       <Form.Item
                         {...restField}
                         name={[name, 'amount']}
-                        rules={[{ required: true, message: 'Missing first name' }]}
+                        rules={[{ required: true, message: 'Missing ' }]}
                       >
                         <Input placeholder="Actual amount" />
                       </Form.Item>
                       <Form.Item
                         {...restField}
                         name={[name, 'discountedAmount']}
-                        rules={[{ required: true, message: 'Missing first name' }]}
+                        rules={[{ required: true, message: 'Missing ' }]}
                       >
                         <Input placeholder="Discounted amount" />
                       </Form.Item>
                       <Form.Item
                         {...restField}
                         name={[name, 'date']}
-                        rules={[{ required: true, message: 'Missing first name' }]}
+                        rules={[{ required: true, message: 'Missing ' }]}
                       >
                         <DatePicker />
                       </Form.Item>
+                      <Form.Item
+                        {...restField}
+                        name={[name, 'isFree']} valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
+                        <Checkbox>Is Free</Checkbox>
+                      </Form.Item>
+
                       <Button onClick={() => remove(name)}>Remove</Button>
                     </Space>
                   ))}

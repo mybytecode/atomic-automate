@@ -6,4 +6,5 @@ export interface BillingTransaction {
   discountAmount?: number;
   remark?: string;
   createdAt?: string;
+  discountId?: string;
 }
