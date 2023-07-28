@@ -5,7 +5,7 @@ import { BillingTransaction } from "../types/billing_transactions";
 import { getUuid } from "../utils/uuid";
 import { useState } from "react";
 import { BILLING_TRANSACTIONS_QUERY_TEMPLATE } from "../constants";
-import { replacePlaceholder } from "../utils/string";
+import { copyToClipboard, replacePlaceholder } from "../utils/string";
 
 const { Panel } = Collapse;
 
@@ -17,6 +17,7 @@ interface Props {
 export default function BillingTransactions() {
   const [form] = Form.useForm();
   const [billingTransactions, setBillingTransactions] = useState<Props[]>([])
+  const [allQueries, setAllQueries] = useState<string>('');
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -27,7 +28,6 @@ export default function BillingTransactions() {
 
   const handleSubmit = () => {
     const values = form.getFieldsValue();
-    console.log(values);
     const transactions = values.transaction.sort((t1: any, t2: any) => {
       return t1.date.isBefore(t2)
     })
@@ -38,6 +38,7 @@ export default function BillingTransactions() {
 
     const txnQuery: Props[] = []
     var dueAmount = 0
+    var q = ''
     transactions.forEach((transaction: any, index: number) => {
       obj.billingTransactionId = getUuid()
       const dataToRemark = transaction.date.subtract(1, 'month')
@@ -48,13 +49,15 @@ export default function BillingTransactions() {
       dueAmount += parseFloat(transaction.discountedAmount)
       obj.dueAmount = dueAmount
 
-      console.log(transaction.amount, transaction.discountedAmount, dueAmount)
+      const query = replacePlaceholder(BILLING_TRANSACTIONS_QUERY_TEMPLATE, obj as any)
+      q += '\n\n' + query
 
-      txnQuery.push({ name: `Billing Transaction ${++index}`, query: replacePlaceholder(BILLING_TRANSACTIONS_QUERY_TEMPLATE, obj as any) })
-      setBillingTransactions(txnQuery)
+      txnQuery.push({ name: `Billing Transaction ${++index}`, query: allQueries })
     })
+    setAllQueries(q)
+    console.log(allQueries)
+    setBillingTransactions(txnQuery)
 
-    console.log(txnQuery)
   }
 
   return <>
@@ -117,6 +120,7 @@ export default function BillingTransactions() {
           </Form>
         </Col>
         <Col span={12} style={{ border: '1px solid #ccc', padding: '20px', borderRadius: '5px', marginLeft: '2px' }}>
+          <Button style={{ marginBottom: '10px' }} onClick={() => copyToClipboard(allQueries)}>Copy all</Button>
           <Collapse defaultActiveKey={['1']}>
             {billingTransactions.map((billingTransaction) => (<Panel key={billingTransaction.name} header={`${billingTransaction.name}`}>{billingTransaction.query}</Panel>))}
           </Collapse>
